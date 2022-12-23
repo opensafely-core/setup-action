@@ -3,10 +3,10 @@ description: 'Setup an OpenSAFELY environment'
 
 inputs:
   python-version:
-    description: 'The Python version to use'
+    description: 'The Python version to use. A value is required in order to install Python'
     required: false
   install-just:
-    description: 'Install just'
+    description: 'If true, this installs Just'
     required: false
 
 runs:
