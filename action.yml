@@ -1,0 +1,26 @@
+name: 'Setup Action'
+description: 'Setup an OpenSAFELY environment'
+
+inputs:
+  python-version:
+    description: 'The Python version to use'
+    required: false
+  install-just:
+    description: 'Install just'
+    required: false
+
+runs:
+  using: 'composite'
+
+  steps:
+    - uses: actions/checkout@v3
+    - uses: "actions/setup-python@v4"
+      if: ${{ inputs.python-version }}
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install just
+      if: ${{ inputs.install-just }}
+      run: |
+        curl -L https://github.com/casey/just/releases/download/1.9.0/just-1.9.0-x86_64-unknown-linux-musl.tar.gz \
+         | tar -xzf - --directory /usr/local/bin just
+      shell: bash
