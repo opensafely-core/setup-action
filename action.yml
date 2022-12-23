@@ -20,6 +20,8 @@ runs:
       if: ${{ inputs.python-version }}
       with:
         python-version: ${{ inputs.python-version }}
+        cache: "pip"
+        cache-dependency-path: requirements.*.txt
     - name: Install just
       if: ${{ inputs.install-just }}
       run: |
