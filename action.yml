@@ -3,10 +3,10 @@ description: 'Setup an OpenSAFELY environment'
 
 inputs:
   python-version:
-    description: 'The Python version to use'
+    description: 'The Python version to use. A value is required in order to install Python'
     required: false
   install-just:
-    description: 'Install just'
+    description: 'If true, this installs Just'
     required: false
 
 runs:
@@ -14,10 +14,14 @@ runs:
 
   steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - uses: "actions/setup-python@v4"
       if: ${{ inputs.python-version }}
       with:
         python-version: ${{ inputs.python-version }}
+        cache: "pip"
+        cache-dependency-path: requirements.*.txt
     - name: Install just
       if: ${{ inputs.install-just }}
       run: |
