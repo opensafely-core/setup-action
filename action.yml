@@ -8,9 +8,6 @@ inputs:
   install-just:
     description: 'If true, this installs Just'
     required: false
-  just-version:
-    description: 'Specific version of just to install'
-    default: 1.9.0
 
 runs:
   using: 'composite'
@@ -30,5 +27,5 @@ runs:
       shell: bash
       run: |
         mkdir -p "$HOME/bin"
-        bash install-just.sh --to "$HOME/bin" --tag "${{ inputs.just-version }}"
+        bash install-just.sh --to "$HOME/bin" --tag 1.11.0
         echo "$HOME/bin" >> $GITHUB_PATH
