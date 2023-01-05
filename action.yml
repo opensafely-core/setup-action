@@ -24,7 +24,8 @@ runs:
         cache-dependency-path: requirements.*.txt
     - name: Install just
       if: ${{ inputs.install-just }}
-      run: |
-        curl -L https://github.com/casey/just/releases/download/1.9.0/just-1.9.0-x86_64-unknown-linux-musl.tar.gz \
-         | tar -xzf - --directory /usr/local/bin just
       shell: bash
+      run: |
+        mkdir -p "$HOME/bin"
+        bash install-just.sh --to "$HOME/bin" --tag 1.11.0
+        echo "$HOME/bin" >> $GITHUB_PATH

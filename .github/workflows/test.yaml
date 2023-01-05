@@ -1,0 +1,41 @@
+name: self test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: 
+          - ubuntu-20.04
+          - ubuntu-22.04
+          - windows-2019
+          - windows-2022
+          - macOS-12
+          - macOS-11
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: set just version
+      run: echo "JUST_VERSION=1.11.0" >> $GITHUB_ENV
+
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: self test
+      uses: ./
+      with:
+        python-version: "3.10"
+        install-just: true
+    - name: test just works
+      shell: bash
+      run: |
+        just --version
+        just --version | grep -q 1.11.0
+    - name: test python3.10 works and has installed requests
+      shell: bash
+      run: python -m pip install -r requirements.test.txt
