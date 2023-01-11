@@ -6,6 +6,9 @@ It is designed to perform some basic setup and install some tools that are commo
 
 ## Usage
 
+See [action.yml](action.yml) for full details.
+
+### Example
 
 ```
 ...
@@ -17,6 +20,7 @@ jobs:
     steps:
       - uses: "opensafely-core/setup-action@v1"
         with:
-          python-version: 3.10
+          python-version: "3.10"
+          cache-dependency-path: "requirements.*.txt"
           install-just: true
 ```
