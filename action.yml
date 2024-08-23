@@ -28,5 +28,5 @@ runs:
       shell: bash
       run: |
         mkdir -p "$HOME/bin"
-        bash "${{ github.action_path }}"/install-just.sh --to "$HOME/bin" --tag 1.11.0
+        bash "${{ github.action_path }}"/install-just.sh --to "$HOME/bin" --tag 1.34.0
         echo "$HOME/bin" >> $GITHUB_PATH
