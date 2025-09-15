@@ -13,6 +13,9 @@ inputs:
   python-version:
     description: 'The Python version to use. A value is required in order to install Python'
     required: false
+  install-uv:
+    description: 'If set, this installs uv'
+    required: false
   install-just:
     description: 'If true, this installs Just'
     required: false
@@ -27,6 +30,9 @@ runs:
         python-version: ${{ inputs.python-version }}
         cache: ${{ inputs.cache }}
         cache-dependency-path: ${{ inputs.cache-dependency-path }}
+    - name: Install uv
+      if: ${{ inputs.install-uv }}
+      uses: astral-sh/setup-uv@557e51de59eb14aaaba2ed9621916900a91d50c6 # v6.6.1
     - name: Install just
       if: ${{ inputs.install-just }}
       shell: bash
