@@ -28,7 +28,7 @@ runs:
         cache: ${{ inputs.cache }}
         cache-dependency-path: ${{ inputs.cache-dependency-path }}
     - name: Install just
-      if: ${{ inputs.install-just }}
+      if: ${{ inputs.install-just == 'true' }}
       shell: bash
       run: |
         mkdir -p "$HOME/bin"
