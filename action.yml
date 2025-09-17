@@ -3,7 +3,7 @@ description: 'Setup an OpenSAFELY environment'
 
 inputs:
   cache:
-    description: 'If dependencies should be cached, use this parameter to specify the package manager. Supported values: pip, pipenv, poetry. Set to null to disable dependency caching'
+    description: 'If dependencies should be cached, use this parameter to specify the package manager. Supported values: pip, pipenv, poetry, uv. Set to null to disable dependency caching'
     required: false
     default: 'pip'
   cache-dependency-path:
@@ -34,6 +34,8 @@ runs:
     - name: Install uv
       if: ${{ inputs.install-uv == 'true' }}
       uses: astral-sh/setup-uv@557e51de59eb14aaaba2ed9621916900a91d50c6 # v6.6.1
+      with:
+        enable-cache: ${{ inputs.cache == 'uv' }}
     - name: Install just
       if: ${{ inputs.install-just == 'true' }}
       shell: bash
