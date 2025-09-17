@@ -29,8 +29,8 @@ runs:
       if: ${{ inputs.python-version }}
       with:
         python-version: ${{ inputs.python-version }}
-        cache: ${{ inputs.cache }}
-        cache-dependency-path: ${{ inputs.cache-dependency-path }}
+        cache: ${{ (inputs.cache == 'pip' || inputs.cache == 'pipenv' || inputs.cache == 'poetry') && inputs.cache || '' }}
+        cache-dependency-path: ${{ (inputs.cache == 'pip' || inputs.cache == 'pipenv' || inputs.cache == 'poetry') && inputs.cache-dependency-path || '' }}
     - name: Install uv
       if: ${{ inputs.install-uv == 'true' }}
       uses: astral-sh/setup-uv@557e51de59eb14aaaba2ed9621916900a91d50c6 # v6.6.1
