@@ -33,7 +33,7 @@ runs:
         cache-dependency-path: ${{ (inputs.cache == 'pip' || inputs.cache == 'pipenv' || inputs.cache == 'poetry') && inputs.cache-dependency-path || '' }}
     - name: Install uv
       if: ${{ inputs.install-uv == 'true' }}
-      uses: astral-sh/setup-uv@557e51de59eb14aaaba2ed9621916900a91d50c6 # v6.6.1
+      uses: astral-sh/setup-uv@e06108dd0aef18192324c70427afc47652e63a82 # v7.5.0
       with:
         enable-cache: ${{ inputs.cache == 'uv' }}
     - name: Install just
