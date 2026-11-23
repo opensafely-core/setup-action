@@ -53,6 +53,8 @@ jobs:
 | cache-dependency-path|The path to dependency files whose dependencies should be cached. Only applicable if using python-version to install Python.|no|requirements.*.txt|
 | install-uv | If true, this installs uv| no | false |
 | install-just | If true, this installs Just | no | false |
+| just-version | Just version to install. Omit to install the latest release. | no | false |
+
 
 > [!TIP]
 > `python-version` is only required if you need to > install a system python. If using `uv`, you can omit `python-version` and allow `uv` to manage  python versions.
