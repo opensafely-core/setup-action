@@ -61,13 +61,11 @@ jobs:
 
 ## Releasing a new version
 
-Existing workflow files reference this repo using the `v1` tag. The tag
-is automatically updated on merges to the `main` branch via the
-`tag-release` workflow.  It can also be updated manually with:
+A new tag is automatically created on merges to the `main` branch via the
+`tag-release` workflow.
 
-```
-make tag-release
-```
 
-If you make breaking changes, update the `Makefile` command to use a
-new version tag.
+By default, tags will be created for minor versions. Use [semantic commits](https://github.com/mathieudutour/github-tag-action#bumping) to tag a different version if required (e.g. `feat: ` for a new minor version.)
+
+Currently releases are not automated; once a new tag is created, create a new release from the tag in GitHub.
+
