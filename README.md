@@ -53,19 +53,19 @@ jobs:
 | cache-dependency-path|The path to dependency files whose dependencies should be cached. Only applicable if using python-version to install Python.|no|requirements.*.txt|
 | install-uv | If true, this installs uv| no | false |
 | install-just | If true, this installs Just | no | false |
+| just-version | Just version to install. Omit to install the latest release. | no | 1.59.0 |
+
 
 > [!TIP]
 > `python-version` is only required if you need to > install a system python. If using `uv`, you can omit `python-version` and allow `uv` to manage  python versions.
 
 ## Releasing a new version
 
-Existing workflow files reference this repo using the `v1` tag. The tag
-is automatically updated on merges to the `main` branch via the
-`tag-release` workflow.  It can also be updated manually with:
+A new tag is automatically created on merges to the `main` branch via the
+`tag-release` workflow.
 
-```
-make tag-release
-```
 
-If you make breaking changes, update the `Makefile` command to use a
-new version tag.
+By default, tags will be created for minor versions. Use [semantic commits](https://github.com/mathieudutour/github-tag-action#bumping) to tag a different version if required (e.g. `feat: ` for a new minor version.)
+
+Currently releases are not automated; once a new tag is created, create a new release from the tag in GitHub.
+
