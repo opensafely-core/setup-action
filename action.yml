@@ -23,6 +23,7 @@ inputs:
   just-version:
     description: 'Just version to install. Omit to install the latest release.'
     required: false
+    default: 1.59.0
 
 runs:
   using: 'composite'
@@ -46,14 +47,7 @@ runs:
         JUST_VERSION: ${{ inputs.just-version }}
       run: |
         mkdir -p "$HOME/bin"
-
-        if [[ -n "$JUST_VERSION" ]]; then
-          bash "${{ github.action_path }}/install-just.sh" \
-            --to "$HOME/bin" \
-            --tag "$JUST_VERSION"
-        else
-          bash "${{ github.action_path }}/install-just.sh" \
-            --to "$HOME/bin"
-        fi
-
+        bash "${{ github.action_path }}/install-just.sh" \
+          --to "$HOME/bin" \
+          --tag "$JUST_VERSION"
         echo "$HOME/bin" >> "$GITHUB_PATH"
